@@ -103,6 +103,8 @@ function onNumberClick(number) {
   if (!selectedCell) return;
   if (selectedCell.classList.contains('filled')) return;
 
+  cells.forEach(cell => cell.classList.remove('error', 'zoom', 'shake', 'selected'));
+  selectedCell.classList.add('selected');
   setValueInSelectedCell(number);
 
   if (!sudoku.hasEmptyCells()) {
@@ -111,7 +113,6 @@ function onNumberClick(number) {
 }
 
 function setValueInSelectedCell(value) {
-  cells.forEach(cell => cell.classList.remove('error', 'zoom', 'shake'));
   const { row, column } = convertIndexToPosition(selectedCellIndex);
   const duplicatesPositions = sudoku.getDuplicatePositions(row, column, value);
   if (duplicatesPositions.length) {
