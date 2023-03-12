@@ -1,0 +1,149 @@
+:root {
+    --bg: #7c7c7c;
+    --bg-cell: #f2f2f2;
+    --filled-bg: #d9d9d9;
+    --text-color: #222222;
+    --alt-text-color: #ffffff;
+
+    --highlighted: #fff3e5;
+    --selected: #ffdbb3;
+    --error: #ff8c8c;
+
+    --cell-size: 8vmin;
+    --border-radius: 0.5vmin;
+    --gap: 0.5vmin;
+
+    --font-size: 3vmin;
+}
+
+@media (max-width: 600px) {
+    :root {
+        --cell-size: 10vmin;
+        --font-size: 5.5vmin;
+    }
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--bg);
+    font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(9, auto);
+    grid-template-rows: repeat(9, auto);
+    gap: var(--gap);
+}
+
+.square {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+    gap: var(--gap);
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--cell-size);
+    width: var(--cell-size);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-cell);
+    color: var(--text-color);
+    font-size: var(--font-size);
+    cursor: pointer;
+}
+
+.cell:nth-child(3),
+.cell:nth-child(6) {
+    margin-right: var(--gap);
+}
+
+.cell:nth-child(19),
+.cell:nth-child(46) {
+    margin-bottom: var(--gap);
+}
+
+.cell.filled {
+    background-color: var(--filled-bg);
+    color: var(--text-color);
+}
+
+.cell.highlighted {
+    background-color: var(--highlighted);
+}
+
+.cell.selected {
+    background-color: var(--selected);
+}
+
+.cell.error {
+    background-color: var(--error);
+    color: var(--alt-text-color);
+}
+
+.numbers {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    gap: var(--gap);
+    margin-top: 2vmin;
+}
+
+.number,
+.remove {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--cell-size);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-cell);
+    font-size: var(--font-size);
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.zoom {
+    animation: zoom 0.5s ease-in-out;
+}
+
+@keyframes zoom {
+    0% {
+        transform: scale(1.2);
+    }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0% {
+        transform: scale(1.2);
+    }
+
+    25% {
+        transform: scale(1.2) rotate(30deg);
+    }
+
+    50% {
+        transform: scale(1.2) rotate(-30deg);
+    }
+}
