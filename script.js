@@ -158,12 +158,11 @@ function initKeyEvent() {
 }
 
 function winAnimation() {
-  cells.forEach(cell => cell.classList.remove('highlighted', 'selected'));
+  cells.forEach(cell => cell.classList.remove('highlighted', 'selected', 'zoom'));
   cells.forEach((cell, i) => {
     setTimeout(() => cell.classList.add('highlighted', 'zoom'), i * 15);
-    setTimeout(() => selectedCell.classList.remove('zoom'), 500 + i * 10);
   });
   for (let i = 1; i < 8; i++) {
-    setTimeout(() => cells.forEach(cell => cell.classList.toggle('highlighted')), 500 + cells.length * 10 + 300 * i);
+    setTimeout(() => cells.forEach(cell => cell.classList.toggle('highlighted')), 500 + cells.length * 15 + 300 * i);
   }
 }
